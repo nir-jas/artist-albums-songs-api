@@ -11,7 +11,7 @@ class Header {
 			return
 		}
 
-		return response.jsend(null, "Improper Headers", 406);
+		return response.jsend(null, "Improper header value for 'Content-Type' or 'Accept'. Value should be  'application/json'. ", 406);
 	}
 }
 

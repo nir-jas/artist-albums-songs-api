@@ -17,19 +17,29 @@
 const Route = use('Route')
 
 Route.group(() => {
-	Route.post('/register', 'AuthController.register').validator(['Register'])
-	Route.post('/login', 'AuthController.login').validator(['Login'])
+	// Artists
+	Route.get('/artists', 'ArtistController.index')
+	Route.get('/artists/:id', 'ArtistController.show')
+	Route.post('/artist', 'ArtistController.store').validator(['StoreArtist'])
+	Route.patch('/artists/:id','ArtistController.update')
+	Route.delete('/artists/:id','ArtistController.destroy')
+
+	// Albums
+	Route.get('/albums', 'AlbumController.index')
+	Route.get('/albums/:id', 'AlbumController.show')
+	Route.post('/album', 'AlbumController.store').validator(['StoreAlbum'])
+	Route.patch('/albums/:id','AlbumController.update')
+	Route.delete('/albums/:id','AlbumController.destroy')
+
+	// Songs
+	Route.get('/songs', 'SongController.index')
+	Route.get('/songs/:id', 'SongController.show')
+	Route.post('/song', 'SongController.store').validator(['StoreSong'])
+	Route.patch('/songs/:id','SongController.update')
+	Route.delete('/songs/:id','SongController.destroy')
 })
 .namespace('Api/V1')
 .middleware(['header'])
-.prefix('api/v1');
-
-Route.group(() => {
-	Route.post('/message', 'ChatController.create').validator(['SendMessage'])
-	Route.get('/messages', 'ChatController.index')
-})
-.namespace('Api/V1')
-.middleware(['header','auth'])
 .prefix('api/v1');
 
 
